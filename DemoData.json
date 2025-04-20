@@ -6371,7 +6371,7 @@
             "value": "moderate"
           },
           "rain": {
-            "value": 0,
+            "value": 70,
             "unit": "mm"
           },
           "sub_type": 0,
@@ -6382,7 +6382,7 @@
             "value": "isolated"
           },
           "hail": {
-            "value": 3,
+            "value": 3-6,
             "unit": "cm"
           },
           "gust": {
