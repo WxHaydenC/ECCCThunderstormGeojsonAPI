@@ -2,7 +2,7 @@ name: Update ECCC Thunderstorm Outlook Data
 
 on:
   schedule:
-    - cron: '0 */6 * * *'  # Run every 6 hours
+    - cron: '0 * * * *'  # Run every hour at minute 0
   workflow_dispatch:  # Allow manual trigger
 
 jobs:
