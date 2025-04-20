@@ -6368,10 +6368,10 @@
         "product_class": "Thunderstorm",
         "metobject": {
           "severity": {
-            "value": "Extreme"
+            "value": "extreme"
           },
           "rain": {
-            "value": 20,
+            "value": 0,
             "unit": "mm"
           },
           "sub_type": 0,
@@ -6382,11 +6382,11 @@
             "value": "isolated"
           },
           "hail": {
-            "value": 6,
+            "value": 3,
             "unit": "cm"
           },
           "gust": {
-            "value": 70,
+            "value": 80,
             "unit": "km/h"
           }
         },
