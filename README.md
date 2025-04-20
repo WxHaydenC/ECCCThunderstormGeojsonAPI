@@ -1,6 +1,6 @@
 # ECCC Thunderstorm Outlook API
 
-This repository provides an automated API for Environment and Climate Change Canada (ECCC) Thunderstorm Outlook data. The data is automatically updated every 6 hours and made available as a JSON file through GitHub.
+This repository provides an automated API for Environment and Climate Change Canada (ECCC) Thunderstorm Outlook data. The data is automatically updated every hour and made available as a JSON file through GitHub.
 
 ## Features
 
