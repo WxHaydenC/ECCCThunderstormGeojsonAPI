@@ -6376,7 +6376,7 @@
           },
           "sub_type": 0,
           "tornado_risk": {
-            "value": true
+            "value": false
           },
           "thunderstorm": {
             "value": "isolated"
