@@ -10,7 +10,7 @@ This repository provides an automated API for Environment and Climate Change Can
   - PSPC (Prairie Storm Prediction Centre - MB, SK, AB)
   - ASPC (Atlantic Storm Prediction Centre - NB, NS, PE, NL)
   - BCSPC (British Columbia Storm Prediction Centre)
-- Updates every 6 hours via GitHub Actions
+- Updates every hour via GitHub Actions
 - Provides data for 12-hour, 24-hour, and 36-hour forecasts
 - Maintains version history of forecasts
 - Easy-to-use JSON format
