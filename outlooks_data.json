@@ -5288,12 +5288,12 @@
             ]
           },
           "properties": {
-            "amendment": 0,
+            "amendment": 1,
             "publication_datetime": "2025-05-03T17:00:00Z",
             "expiration_datetime": "2025-05-05T05:00:00Z",
             "type": "metattrarea",
-            "product_sub_type": "ON",
             "product_class": "Thunderstorm",
+            "product_sub_type": "ON",
             "metobject": {
               "severity": {
                 "value": "minor"
@@ -5328,7 +5328,7 @@
       ]
     }
   },
-  "last_updated": "2025-05-03T15:14:12.266367",
+  "last_updated": "2025-05-03T16:17:25.795366",
   "metadata": {
     "source": "Environment and Climate Change Canada",
     "description": "Thunderstorm Outlook Data",
