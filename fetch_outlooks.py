@@ -19,6 +19,7 @@ class ECCCOutlookFetcher:
             "day1": {},  # 12-hour forecasts
             "day2": {},  # 24-hour forecasts
             "day3": {},  # 36-hour forecasts
+            "day4": {},  # New: 60-hour forecasts (sometimes available)
             "last_updated": datetime.utcnow().isoformat(),
             "metadata": {
                 "source": "Environment and Climate Change Canada",
@@ -29,7 +30,8 @@ class ECCCOutlookFetcher:
                     "QSPC": "Quebec Storm Prediction Centre",
                     "PSPC": "Prairie Storm Prediction Centre (MB, SK, AB)",
                     "ASPC": "Atlantic Storm Prediction Centre (NB, NS, PE, NL)",
-                    "BCSPC": "British Columbia Storm Prediction Centre"
+                    "BCSPC": "British Columbia Storm Prediction Centre",
+                    "PASPC": "Prairie and Arctic Storm Prediction Centre"
                 }
             }
         }
@@ -37,52 +39,50 @@ class ECCCOutlookFetcher:
         self.failed_fetches = 0
 
     def _generate_date_patterns(self) -> List[str]:
-        """Generate date patterns for the last 2 days and next 3 days."""
-        dates = []
+        """Generate date pattern for only the current date."""
         today = datetime.utcnow()
+        current_date = today.strftime("%Y%m%d")
         
-        for i in range(-2, 4):  # From 2 days ago to 3 days ahead
-            date = today + timedelta(days=i)
-            dates.append(date.strftime("%Y%m%d"))
-        
-        logging.info(f"Generated date patterns for dates: {', '.join(dates)}")
-        return dates
+        logging.info(f"Only fetching outlooks for current date: {current_date}")
+        return [current_date]
 
     def _construct_filename_patterns(self) -> List[str]:
-        """Construct possible filename patterns."""
+        """Construct possible filename patterns for current date only."""
         dates = self._generate_date_patterns()
         regions = [
             ("OSPC", "ON"),   # Ontario
             ("QSPC", "QC"),   # Quebec
-            ("PSPC", "MB"),   # Prairie - Manitoba
-            ("PSPC", "SK"),   # Prairie - Saskatchewan
-            ("PSPC", "AB"),   # Prairie - Alberta
+            ("PSPC", "BC-YT"), # Prairie - BC/Yukon Territory
             ("ASPC", "NB"),   # Atlantic - New Brunswick
             ("ASPC", "NS"),   # Atlantic - Nova Scotia
             ("ASPC", "PE"),   # Atlantic - Prince Edward Island
             ("ASPC", "NL"),   # Atlantic - Newfoundland and Labrador
             ("BCSPC", "BC"),  # British Columbia
+            ("PASPC", "MK"),  # Prairie and Arctic Storm Prediction Centre - Manitoba/SK?
+            ("PASPC", "PRAIRIES"), # Prairie and Arctic - All Prairies
         ]
-        time_periods = ["PT012H00M", "PT024H00M", "PT036H00M"]
+        time_periods = ["PT012H00M", "PT024H00M", "PT036H00M", "PT060H00M"]
+        times = ["T1700Z", "T1900Z", "T2000Z"]
         
         patterns = []
         for date in dates:
-            for spc, province in regions:
-                for period in time_periods:
-                    base = f"{date}T1700Z_MSC_ThunderstormOutlook_{spc}_{province}_{period}"
-                    # Try multiple versions (v1, v2, v3)
-                    for version in range(1, 4):
-                        patterns.append(f"{base}_v{version}.json")
+            for time in times:
+                for spc, province in regions:
+                    for period in time_periods:
+                        base = f"{date}{time}_MSC_ThunderstormOutlook_{spc}_{province}_{period}"
+                        # Try multiple versions (v1, v2, v3, v4)
+                        for version in range(1, 5):
+                            patterns.append(f"{base}_v{version}.json")
         
-        logging.info(f"Generated {len(patterns)} possible filename patterns")
+        logging.info(f"Generated {len(patterns)} possible filename patterns for today")
         return patterns
 
     def fetch_outlooks(self) -> None:
-        """Fetch all available outlook data."""
+        """Fetch all available outlook data for the current date only."""
         patterns = self._construct_filename_patterns()
         total_patterns = len(patterns)
         
-        logging.info(f"Starting to fetch outlook data for {total_patterns} possible patterns")
+        logging.info(f"Starting to fetch today's outlook data for {total_patterns} possible patterns")
         
         for index, pattern in enumerate(patterns, 1):
             url = f"{self.BASE_URL}/{pattern}"
@@ -99,8 +99,10 @@ class ECCCOutlookFetcher:
                         day_key = "day1"
                     elif "PT024H00M" in pattern:
                         day_key = "day2"
-                    else:  # PT036H00M
+                    elif "PT036H00M" in pattern:
                         day_key = "day3"
+                    else:  # PT060H00M
+                        day_key = "day4"
                     
                     # Extract date from filename
                     date = pattern[:8]
@@ -153,4 +155,4 @@ def main():
     logging.info("Completed ECCC Thunderstorm Outlook data fetch")
 
 if __name__ == "__main__":
-    main() 
+    main()
