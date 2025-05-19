@@ -19,7 +19,7 @@ class ECCCOutlookFetcher:
             "day1": {},  # 12-hour forecasts
             "day2": {},  # 24-hour forecasts
             "day3": {},  # 36-hour forecasts
-            "day4": {},  # New: 60-hour forecasts (sometimes available)
+            "day4": {},  # 60-hour forecasts
             "last_updated": datetime.utcnow().isoformat(),
             "metadata": {
                 "source": "Environment and Climate Change Canada",
@@ -88,7 +88,7 @@ class ECCCOutlookFetcher:
             url = f"{self.BASE_URL}/{pattern}"
             try:
                 logging.debug(f"Attempting to fetch: {url}")
-                response = requests.get(url, timeout=10)  # Add timeout
+                response = requests.get(url, timeout=10)
                 
                 if response.status_code == 200:
                     data = response.json()
@@ -104,23 +104,30 @@ class ECCCOutlookFetcher:
                     else:  # PT060H00M
                         day_key = "day4"
                     
-                    # Extract date from filename
+                    # Extract date and create a unique key for this outlook
                     date = pattern[:8]
+                    outlook_key = f"{pattern[:15]}_{pattern.split('_')[3]}_{pattern.split('_')[4]}"  # date_time_spc_province
                     
-                    # Store the data
+                    # Initialize the date structure if it doesn't exist
                     if date not in self.outlooks_data[day_key]:
-                        self.outlooks_data[day_key][date] = data
-                        logging.info(f"Successfully fetched new data for {day_key} on {date}")
-                    else:
-                        # Compare versions and keep the latest
-                        current_version = int(pattern.split("_v")[-1].split(".")[0])
-                        existing_version = 1  # Default to 1 if no version found
-                        if self.outlooks_data[day_key][date].get("version"):
-                            existing_version = int(self.outlooks_data[day_key][date]["version"])
-                        
-                        if current_version > existing_version:
-                            self.outlooks_data[day_key][date] = data
-                            logging.info(f"Updated to newer version for {day_key} on {date}")
+                        self.outlooks_data[day_key][date] = {}
+                    
+                    # Initialize the outlook structure if it doesn't exist
+                    if outlook_key not in self.outlooks_data[day_key][date]:
+                        self.outlooks_data[day_key][date][outlook_key] = {
+                            "current_version": 0,
+                            "outlooks": {}
+                        }
+                    
+                    # Get the version number
+                    current_version = int(pattern.split("_v")[-1].split(".")[0])
+                    
+                    # Only update if this is a newer version
+                    if current_version > self.outlooks_data[day_key][date][outlook_key]["current_version"]:
+                        self.outlooks_data[day_key][date][outlook_key]["current_version"] = current_version
+                        self.outlooks_data[day_key][date][outlook_key]["outlooks"][f"v{current_version}"] = data
+                        logging.info(f"Updated to newer version {current_version} for {outlook_key}")
+                    
                 elif response.status_code == 404:
                     logging.debug(f"File not found: {pattern}")
                     self.failed_fetches += 1
