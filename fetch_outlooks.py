@@ -39,12 +39,17 @@ class ECCCOutlookFetcher:
         self.failed_fetches = 0
 
     def _generate_date_patterns(self) -> List[str]:
-        """Generate date pattern for only the current date."""
+        """Generate date patterns for current date and two days prior."""
         today = datetime.utcnow()
-        current_date = today.strftime("%Y%m%d")
+        yesterday = today - timedelta(days=1)
+        two_days_ago = today - timedelta(days=2)
         
-        logging.info(f"Only fetching outlooks for current date: {current_date}")
-        return [current_date]
+        current_date = today.strftime("%Y%m%d")
+        yesterday_date = yesterday.strftime("%Y%m%d")
+        two_days_ago_date = two_days_ago.strftime("%Y%m%d")
+        
+        logging.info(f"Fetching outlooks for current date: {current_date}, yesterday: {yesterday_date}, and two days ago: {two_days_ago_date}")
+        return [current_date, yesterday_date, two_days_ago_date]
 
     def _construct_filename_patterns(self) -> List[str]:
         """Construct possible filename patterns for current date only."""
