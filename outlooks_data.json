@@ -54895,6 +54895,18 @@
             ]
           }
         }
+      },
+      "20250601T2000Z__PSPC_BC-YT": {
+        "current_version": 1,
+        "outlooks": {
+          "v1": {
+            "publication_datetime": "2025-06-01T20:00:00Z",
+            "validity_datetime": "2025-06-02T20:00:00Z",
+            "expiration_datetime": "2025-06-03T08:00:00Z",
+            "type": "FeatureCollection",
+            "features": []
+          }
+        }
       }
     },
     "20250531": {
@@ -117309,7 +117321,7 @@
       }
     }
   },
-  "last_updated": "2025-06-01T20:16:38.685282",
+  "last_updated": "2025-06-01T21:13:43.090039",
   "metadata": {
     "source": "Environment and Climate Change Canada",
     "description": "Thunderstorm Outlook Data",
