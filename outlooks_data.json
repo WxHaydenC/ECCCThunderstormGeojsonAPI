@@ -1,5 +1,31 @@
 {
   "day1": {
+    "20250825": {
+      "20250825T1900Z__PASPC_MK": {
+        "current_version": 1,
+        "outlooks": {
+          "v1": {
+            "publication_datetime": "2025-08-25T19:00:00Z",
+            "validity_datetime": "2025-08-25T19:00:00Z",
+            "expiration_datetime": "2025-08-26T07:00:00Z",
+            "type": "FeatureCollection",
+            "features": []
+          }
+        }
+      },
+      "20250825T1900Z__PASPC_PRAIRIES": {
+        "current_version": 1,
+        "outlooks": {
+          "v1": {
+            "publication_datetime": "2025-08-25T19:00:00Z",
+            "validity_datetime": "2025-08-25T19:00:00Z",
+            "expiration_datetime": "2025-08-26T07:00:00Z",
+            "type": "FeatureCollection",
+            "features": []
+          }
+        }
+      }
+    },
     "20250824": {
       "20250824T1700Z__OSPC_ON": {
         "current_version": 1,
@@ -25967,6 +25993,32 @@
     }
   },
   "day2": {
+    "20250825": {
+      "20250825T1900Z__PASPC_MK": {
+        "current_version": 1,
+        "outlooks": {
+          "v1": {
+            "publication_datetime": "2025-08-25T19:00:00Z",
+            "validity_datetime": "2025-08-26T07:00:00Z",
+            "expiration_datetime": "2025-08-26T19:00:00Z",
+            "type": "FeatureCollection",
+            "features": []
+          }
+        }
+      },
+      "20250825T1900Z__PASPC_PRAIRIES": {
+        "current_version": 1,
+        "outlooks": {
+          "v1": {
+            "publication_datetime": "2025-08-25T19:00:00Z",
+            "validity_datetime": "2025-08-26T07:00:00Z",
+            "expiration_datetime": "2025-08-26T19:00:00Z",
+            "type": "FeatureCollection",
+            "features": []
+          }
+        }
+      }
+    },
     "20250824": {
       "20250824T1700Z__OSPC_ON": {
         "current_version": 1,
@@ -35627,6 +35679,20 @@
     }
   },
   "day3": {
+    "20250825": {
+      "20250825T1900Z__PASPC_MK": {
+        "current_version": 1,
+        "outlooks": {
+          "v1": {
+            "publication_datetime": "2025-08-25T19:00:00Z",
+            "validity_datetime": "2025-08-26T19:00:00Z",
+            "expiration_datetime": "2025-08-27T07:00:00Z",
+            "type": "FeatureCollection",
+            "features": []
+          }
+        }
+      }
+    },
     "20250824": {
       "20250824T1700Z__OSPC_ON": {
         "current_version": 1,
@@ -68936,7 +69002,7 @@
       }
     }
   },
-  "last_updated": "2025-08-25T10:18:09.652635",
+  "last_updated": "2025-08-25T11:13:56.847939",
   "metadata": {
     "source": "Environment and Climate Change Canada",
     "description": "Thunderstorm Outlook Data",
