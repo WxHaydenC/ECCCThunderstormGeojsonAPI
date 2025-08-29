@@ -1677,6 +1677,18 @@
             ]
           }
         }
+      },
+      "20250829T1900Z__PASPC_MK": {
+        "current_version": 1,
+        "outlooks": {
+          "v1": {
+            "publication_datetime": "2025-08-29T19:00:00Z",
+            "validity_datetime": "2025-08-29T19:00:00Z",
+            "expiration_datetime": "2025-08-30T07:00:00Z",
+            "type": "FeatureCollection",
+            "features": []
+          }
+        }
       }
     },
     "20250828": {
@@ -47384,6 +47396,20 @@
     }
   },
   "day2": {
+    "20250829": {
+      "20250829T1900Z__PASPC_MK": {
+        "current_version": 1,
+        "outlooks": {
+          "v1": {
+            "publication_datetime": "2025-08-29T19:00:00Z",
+            "validity_datetime": "2025-08-30T07:00:00Z",
+            "expiration_datetime": "2025-08-30T19:00:00Z",
+            "type": "FeatureCollection",
+            "features": []
+          }
+        }
+      }
+    },
     "20250828": {
       "20250828T1700Z__OSPC_ON": {
         "current_version": 1,
@@ -49819,6 +49845,18 @@
                 }
               }
             ]
+          }
+        }
+      },
+      "20250829T1900Z__PASPC_MK": {
+        "current_version": 1,
+        "outlooks": {
+          "v1": {
+            "publication_datetime": "2025-08-29T19:00:00Z",
+            "validity_datetime": "2025-08-30T19:00:00Z",
+            "expiration_datetime": "2025-08-31T07:00:00Z",
+            "type": "FeatureCollection",
+            "features": []
           }
         }
       }
@@ -95979,7 +96017,7 @@
       }
     }
   },
-  "last_updated": "2025-08-29T09:16:35.755676",
+  "last_updated": "2025-08-29T10:16:01.604777",
   "metadata": {
     "source": "Environment and Climate Change Canada",
     "description": "Thunderstorm Outlook Data",
