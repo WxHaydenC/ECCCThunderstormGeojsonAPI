@@ -1,5 +1,4 @@
-# WARNING!! THIS GITHUB WILL BE SHUTDOWN FOR A WHILE, THE NEW API WILL BE REVAMPED AND HOPEFULLY BETTER! THANK YOU FOR USING THIS
-
+# This GitHub has been shutdown. Find the ECCC thunderstorm geojson here 'https://dd.alpha.weather.gc.ca/thunderstorm-outlooks'
 # ECCC Thunderstorm Outlook API
 
 This repository provides an automated API for Environment and Climate Change Canada (ECCC) Thunderstorm Outlook data. The data is automatically updated every hour and made available as a JSON file through GitHub.
@@ -43,4 +42,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Disclaimer
 
 This project is not affiliated with Environment and Climate Change Canada. The data provided by this API belongs to ECCC.
+
 
